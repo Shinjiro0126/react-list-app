@@ -1,0 +1,17 @@
+.postcard {
+  width: 200px;
+  height: 140px;
+  margin: 10px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+  transform: rotate(-5deg);
+}
+
+.postcard:nth-child(odd) {
+  transform: rotate(5deg);
+}
+
+.delete-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

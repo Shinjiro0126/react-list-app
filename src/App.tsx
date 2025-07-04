@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
+import AddWishForm from './components/AddWishForm';
+import WishList from './components/WishList';
+import Snowflakes from './components/Snowflakes';
+import {Container,Button, Box} from '@mui/material';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export default function App() {
+ const [wishes, setWishes] = useState<string[]>([]);
+ const [showForm, setShowForm] = useState<boolean>(false);
 
-export default App;
+ const handleAddWish = (wish: string) => {
+  setWishes([...wishes, wish]);
+  setShowForm(false);
+ }
+
+ const handleRemoveWish = (wish: string) => {
+  setWishes(wishes.filter(w => w !== wish));
+ }
+
+ return(
+  <Container maxWidth={false} className="app-container" disableGutters>
+    <Snowflakes />
+    <Box sx={{ my: 4, textAlign: 'center', px: 2}}>
+      <Button
+        sx={{ mb: 1 }}
+        variant='contained'
+        color='primary'
+        onClick={() => setShowForm(!showForm)}
+      >
+        {showForm ? 'Close' : 'Add Wish'}
+      </Button>
+      {showForm && 
+        <AddWishForm onAddWish={handleAddWish} />
+      }
+      <WishList wishes={wishes} onRemoveWish={handleRemoveWish} />
+    </Box>
+  </Container>
+ )
+}

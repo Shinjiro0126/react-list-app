@@ -1,0 +1,32 @@
+/* Snowflakes.css - 降雪のためのスタイル */
+.snowflakes-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.snowflake {
+  position: absolute;
+  top: -10px;
+  color: #fff;
+  font-size: 1em;
+  opacity: 0.8;
+  user-select: none;
+  pointer-events: none;
+  animation: snowfall linear infinite;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(100vh);
+  }
+}
